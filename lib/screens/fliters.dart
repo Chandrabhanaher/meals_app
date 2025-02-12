@@ -10,7 +10,9 @@ enum FilterData {
 }
 
 class FilterScreen extends StatefulWidget {
-  const FilterScreen({super.key});
+  const FilterScreen({super.key, required this.currentFilters});
+
+  final Map<FilterData, bool> currentFilters;
 
   @override
   State<FilterScreen> createState() {
@@ -23,6 +25,15 @@ class _FilterScreenState extends State<FilterScreen> {
   var _lactoseFreeFilterSet = false;
   var _vegetarianFilterSet = false;
   var _veganFilterSet = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _glutenFreeFilterSet = widget.currentFilters[FilterData.glutenFree]!;
+    _lactoseFreeFilterSet = widget.currentFilters[FilterData.lactoseFree]!;
+    _vegetarianFilterSet = widget.currentFilters[FilterData.vegetarian]!;
+    _veganFilterSet = widget.currentFilters[FilterData.vegan]!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +52,7 @@ class _FilterScreenState extends State<FilterScreen> {
       // ),
       body: PopScope(
         canPop: false,
-        onPopInvokedWithResult: (bool didPop, dynamic result) {
+        onPopInvokedWithResult: (bool didPop, dynamic result) async {
           if (didPop) return;
           Navigator.of(context).pop({
             FilterData.glutenFree: _glutenFreeFilterSet,
