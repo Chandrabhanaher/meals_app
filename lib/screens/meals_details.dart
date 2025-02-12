@@ -46,8 +46,10 @@ class MealsDetailsScreen extends StatelessWidget {
               Text(
                 ingredients,
                 textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onBackground),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
               ),
             const SizedBox(height: 24),
             Text(
@@ -66,7 +68,7 @@ class MealsDetailsScreen extends StatelessWidget {
                   steps,
                   textAlign: TextAlign.start,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground),
+                      color: Theme.of(context).colorScheme.onSurface),
                 ),
               ),
           ],
