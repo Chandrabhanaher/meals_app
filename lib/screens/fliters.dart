@@ -7,6 +7,7 @@ class FilterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final activeFilter = ref.watch(filterProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your filters..'),
@@ -14,11 +15,11 @@ class FilterScreen extends ConsumerWidget {
       body: Column(
         children: [
           SwitchListTile(
-            value: _glutenFreeFilterSet,
+            value: activeFilter[FilterData.glutenFree]!,
             onChanged: (isChecked) {
-              setState(() {
-                _glutenFreeFilterSet = isChecked;
-              });
+              ref
+                  .read(filterProvider.notifier)
+                  .setFilter(FilterData.glutenFree, isChecked);
             },
             title: Text(
               'Gluten-free',
@@ -38,11 +39,11 @@ class FilterScreen extends ConsumerWidget {
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
           ),
           SwitchListTile(
-            value: _lactoseFreeFilterSet,
+            value: activeFilter[FilterData.lactoseFree]!,
             onChanged: (isChecked) {
-              setState(() {
-                _lactoseFreeFilterSet = isChecked;
-              });
+              ref
+                  .read(filterProvider.notifier)
+                  .setFilter(FilterData.lactoseFree, isChecked);
             },
             title: Text(
               'Loctose-free',
@@ -62,11 +63,11 @@ class FilterScreen extends ConsumerWidget {
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
           ),
           SwitchListTile(
-            value: _vegetarianFilterSet,
+            value: activeFilter[FilterData.vegetarian]!,
             onChanged: (isChecked) {
-              setState(() {
-                _vegetarianFilterSet = isChecked;
-              });
+              ref
+                  .read(filterProvider.notifier)
+                  .setFilter(FilterData.vegetarian, isChecked);
             },
             title: Text(
               'Vegetarian',
@@ -86,11 +87,11 @@ class FilterScreen extends ConsumerWidget {
             contentPadding: const EdgeInsets.only(left: 34, right: 22),
           ),
           SwitchListTile(
-            value: _veganFilterSet,
+            value: activeFilter[FilterData.vegan]!,
             onChanged: (isChecked) {
-              setState(() {
-                _veganFilterSet = isChecked;
-              });
+              ref
+                  .read(filterProvider.notifier)
+                  .setFilter(FilterData.vegan, isChecked);
             },
             title: Text(
               'Vegan',

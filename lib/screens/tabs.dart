@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:meals_app/data/meal.dart';
 import 'package:meals_app/providers/favorites_provider.dart';
 import 'package:meals_app/providers/filter_provider.dart';
-import 'package:meals_app/providers/meals_provider.dart';
+// import 'package:meals_app/providers/meals_provider.dart';
 import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/fliters.dart';
 import 'package:meals_app/screens/meals.dart';
@@ -72,26 +72,28 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final meals = ref.watch(mealsProvider);
+    // final meals = ref.watch(mealsProvider);
 
-    final activeFilters = ref.watch(filterProvider);
+    // final activeFilters = ref.watch(filterProvider);
 
-    final availableMeals = meals.where((meal) {
-      if (activeFilters[FilterData.glutenFree]! && !meal.isGlutenFree) {
-        return false;
-      }
-      if (activeFilters[FilterData.lactoseFree]! && !meal.isLactoseFree) {
-        return false;
-      }
-      if (activeFilters[FilterData.vegetarian]! && !meal.isVegetarian) {
-        return false;
-      }
-      if (activeFilters[FilterData.vegan]! && !meal.isVegan) {
-        //_selectFilters
-        return false;
-      }
-      return true;
-    }).toList();
+    // final availableMeals = meals.where((meal) {
+    //   if (activeFilters[FilterData.glutenFree]! && !meal.isGlutenFree) {
+    //     return false;
+    //   }
+    //   if (activeFilters[FilterData.lactoseFree]! && !meal.isLactoseFree) {
+    //     return false;
+    //   }
+    //   if (activeFilters[FilterData.vegetarian]! && !meal.isVegetarian) {
+    //     return false;
+    //   }
+    //   if (activeFilters[FilterData.vegan]! && !meal.isVegan) {
+    //     //_selectFilters
+    //     return false;
+    //   }
+    //   return true;
+    // }).toList();
+
+    final availableMeals = ref.watch(filterMealsProvilder);
 
     Widget activePage = CategoriesScreen(
       // onToggleFavorite: _toggleMealFavoriteStates,
